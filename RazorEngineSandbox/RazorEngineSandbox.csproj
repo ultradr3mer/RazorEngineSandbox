@@ -173,6 +173,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ContainerFactory.cs" />
+    <Compile Include="Data\Position.cs" />
+    <Compile Include="Data\Bestellung.cs" />
     <Compile Include="Data\ParseResult.cs" />
     <Compile Include="Events\ParseCompleted.cs" />
     <Compile Include="Services\TemplateService.cs" />

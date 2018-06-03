@@ -38,7 +38,13 @@
     {
       if (e.PropertyName == nameof(MainWindowViewModel.Result))
       {
-        this.WebBrowser.NavigateToString(this.ViewModel.Result ?? "<body/>");
+        string content = this.ViewModel.Result;
+        if (string.IsNullOrWhiteSpace(content))
+        {
+          content = "<body/>";
+        }
+
+        this.WebBrowser.NavigateToString(content);
       }
     }
 

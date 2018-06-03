@@ -71,7 +71,9 @@
     {
       try
       {
-        var scriptOptions = ScriptOptions.Default.AddImports("System");
+        var scriptOptions = ScriptOptions.Default;
+        scriptOptions = scriptOptions.AddReferences(typeof(TemplateService).Assembly);
+        scriptOptions = scriptOptions.AddImports("System", "RazorEngineSandbox.Data");
         result.Model = await CSharpScript.EvaluateAsync(request.Code, scriptOptions);
       }
       catch (CompilationErrorException e)
@@ -80,7 +82,7 @@
       }
     }
 
-    /// <summary>We have to create seperate domain shizzle to prevent hackers from beeing able abuse our templating power. I would like to understand better how this works, just doing as told by this page now: https://antaris.github.io/RazorEngine/Isolation.html</summary>
+    /// <summary>We have to create seperate domain shizzle to prevent hackers from beeing able abuse our templating power. I would like to understand better how this works, just doing as told by this page now: https://antaris.github.io/RazorEngine/Isolation.html </summary>
     /// <returns>An AppDomain that you should use to execute the sandbox stuff.</returns>
     private static AppDomain SandboxCreator()
     {
@@ -143,13 +145,14 @@
       {
         try
         {
+          Type modelType = result.Model.GetType() == typeof(Bestellung) ? typeof(Bestellung) : null;
           var name = request.Template.GetHashCode().ToString("X");
-          this.service.Compile(request.Template, name);
-          result.Value = this.service.Run(name, null, result.Model);
+          this.service.Compile(request.Template, name, modelType);
+          result.Value = this.service.Run(name, modelType, result.Model);
         }
         catch (Exception e)
         {
-          result.TemplateDiagnostics = e.Message;
+            result.TemplateDiagnostics = e.Message;
         }
       }
     }

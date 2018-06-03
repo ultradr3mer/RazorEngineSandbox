@@ -1,0 +1,70 @@
+// Model
+new Bestellung { 
+	Name = "Lieschen Müller",
+	KundenNummer = 122,
+	Land = "DE",
+	Positionen = new [] {
+		new Position { Bezeichnung = "Versandkosten", Preis = 3.45m },
+		new Position { Bezeichnung = "Anrufbeantworter (Antik)", Preis = 20.0m },
+		new Position { Bezeichnung = "Schnurtelefon (Retro)", Preis = 15.0m }
+	}
+}
+// Template
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+ 	body { font-family: calibri; }
+</style>
+<html lang="de">
+<head/>
+	<body>
+		<h1>Hallo @Model.Name,</h1>
+		<h2>vielen Dank für Ihre Bestellung.</h2>
+		<p>Wir bedanken uns und wünschen ihnen viel Spaß mit unserem Silber Service.</p>
+		<table>
+		<tr><th>Bezeichnung</th><th>Preis</th></tr>
+		@foreach(dynamic artikel in Model.Positionen)
+		{
+			<tr><td>@artikel.Bezeichnung</td><td>@artikel.Preis€</td></tr>
+		}
+		</table>
+		<p>Bei Fragen besuchen Sie gerne unser Kundenportal unter <a href="www.eevolution.de/kundenportal">https://www.eevolution.de/kundenportal/</a></p>
+		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQMAAACXljzdAAAABlBMVEX///8AAABVwtN+AAABj0lEQVRYhdWXQa6DMAxEjbJgyRE4Sm5G4GY5CkdgyQIx9dihv6r+Pm6ktILXhZ2Ox45I4JXAtcvFhxG4ZbI3awRy8M2erxF1OKcqwi1zdDLjGndhTsCRobTgiEQytx5xXeSHiKRzhoz/ZdqTuA7SKQLdrgWJTrzmlMz11ny286saO5K/NTPazMi/VzzCfNQLAFXIQPUyp2vaIxD+5XRX3dnUC7osdRCATHthtVvkOFSj7yMOTNQPLB86rKqXr55/oTvx9qn9dPQHPWcZYL8ITFKbANxhzQq0A7hX9SaqA2Gfv6zizUPz1vKJTTR89wNzf8m3v+xO2Jl4vkoqv0k86tAE7q7m+ua0quB0PP20L9EPRpss4gmbRr0mzycykeL15i6mfQtvhQQgNvPBpFyNpHYv6Uza4vQERl1UDwXRyTPzkbKfFp+in8rqS3xWNr8a4FEvn1N0UOJ3Js6jdH9XSKu5METMq1brTK7r+OS51xe4ZCQEEb/PtXs970zPNBiYtJojYT6LDYGf1diP/OR6AaRXuHYIbzn2AAAAAElFTkSuQmCC" />
+	</body>
+</html>
+
+
+// Model
+new Bestellung { 
+	Name = "Lieschen Müller",
+	KundenNummer = 122,
+	Land = "DE",
+	Positionen = new [] {
+		new Position { Bezeichnung = "Versandkosten", Preis = 3.45m },
+		new Position { Bezeichnung = "Anrufbeantworter (Antik)", Preis = 20.0m },
+		new Position { Bezeichnung = "Schnurtelefon (Retro)", Preis = 15.0m }
+	}
+}
+// Template
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<style>
+ 	body { font-family: calibri; }
+</style>
+<html lang="de">
+<head/>
+	<body>
+		<h1>Hallo @Model.Name,</h1>
+		<h2>vielen Dank für Ihre Bestellung.</h2>
+		<p>Wir bedanken uns und wünschen ihnen viel Spaß mit unserem Silber Service.</p>
+		<table>
+		<tr><th>Bezeichnung</th><th>Preis</th></tr>
+		@foreach(dynamic artikel in Model.Positionen)
+		{
+			<tr><td>@artikel.Bezeichnung</td><td>@artikel.Preis€</td></tr>
+		}
+		</table>
+		<h3>Gesammt:</h3>
+		<p>@Model.Positionen.Select(o=>o.Preis).Sum()€</p>
+		<p>Bei Fragen besuchen Sie gerne unser Kundenportal unter <a href="www.eevolution.de/kundenportal">https://www.eevolution.de/kundenportal/</a></p>
+		<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQMAAACXljzdAAAABlBMVEX///8AAABVwtN+AAABj0lEQVRYhdWXQa6DMAxEjbJgyRE4Sm5G4GY5CkdgyQIx9dihv6r+Pm6ktILXhZ2Ox45I4JXAtcvFhxG4ZbI3awRy8M2erxF1OKcqwi1zdDLjGndhTsCRobTgiEQytx5xXeSHiKRzhoz/ZdqTuA7SKQLdrgWJTrzmlMz11ny286saO5K/NTPazMi/VzzCfNQLAFXIQPUyp2vaIxD+5XRX3dnUC7osdRCATHthtVvkOFSj7yMOTNQPLB86rKqXr55/oTvx9qn9dPQHPWcZYL8ITFKbANxhzQq0A7hX9SaqA2Gfv6zizUPz1vKJTTR89wNzf8m3v+xO2Jl4vkoqv0k86tAE7q7m+ua0quB0PP20L9EPRpss4gmbRr0mzycykeL15i6mfQtvhQQgNvPBpFyNpHYv6Uza4vQERl1UDwXRyTPzkbKfFp+in8rqS3xWNr8a4FEvn1N0UOJ3Js6jdH9XSKu5METMq1brTK7r+OS51xe4ZCQEEb/PtXs970zPNBiYtJojYT6LDYGf1diP/OR6AaRXuHYIbzn2AAAAAElFTkSuQmCC" />
+	</body>
+</html>
