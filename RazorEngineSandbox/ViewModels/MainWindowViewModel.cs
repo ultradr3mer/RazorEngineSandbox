@@ -8,6 +8,7 @@
   using RazorEngineSandbox.Properties;
   using RazorEngineSandbox.Services;
   using System.ComponentModel;
+  using System.Windows;
 
   internal class MainWindowViewModel : BindableBase
   {
@@ -46,6 +47,10 @@
 
     public string Output { get; set; }
 
+    public Visibility HtmlResultVisibility { get; set; }
+
+    public bool IsShowHtml { get; set; } = true;
+
     /// <summary>Gets or sets the result.</summary>
     public string Result { get; set; }
 
@@ -54,6 +59,8 @@
 
     /// <summary>Gets or sets the templateDiagnostics.</summary>
     public string TemplateDiagnostics { get; set; }
+
+    public Visibility TextResultVisibility { get; set; }
 
     #endregion Properties
 
@@ -76,6 +83,12 @@
       if (e.PropertyName == nameof(MainWindowViewModel.Input) || e.PropertyName == nameof(MainWindowViewModel.Template))
       {
         this.templateService.Parse(this.Input, this.Template);
+      }
+
+      if (e.PropertyName == nameof(MainWindowViewModel.IsShowHtml))
+      {
+        this.HtmlResultVisibility = this.IsShowHtml ? Visibility.Visible : Visibility.Collapsed;
+        this.TextResultVisibility = this.IsShowHtml ? Visibility.Collapsed : Visibility.Visible;
       }
     }
 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RazorEngineSandbox"
         xmlns:viewModels="clr-namespace:RazorEngineSandbox.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="439.286" Width="784.524">
   <Window.Resources>
     <ResourceDictionary>
       <viewModels:MainWindowViewModel x:Key="ViewModel" />
@@ -27,8 +27,10 @@
     </Grid.RowDefinitions>
     <TextBox Margin="5" Text="{Binding Path=Input,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" />
     <TextBox Grid.Column="1" Margin="5" Text="{Binding Path=Template,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" />
-    <WebBrowser Grid.Column="2" Margin="5" Grid.RowSpan="2" Name="WebBrowser"/>
+    <TextBox Visibility="{Binding TextResultVisibility}" Grid.Column="2" Margin="5,5,5,25" Grid.RowSpan="2" Text="{Binding Path=Result,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" IsReadOnly="true"/>
+    <WebBrowser Visibility="{Binding HtmlResultVisibility}" Grid.Column="2" Margin="5,5,5,25" Grid.RowSpan="2" Name="WebBrowser"/>
     <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding CodeDiagnostics}" TextWrapping="Wrap"/>
     <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding TemplateDiagnostics}" TextWrapping="Wrap"/>
+    <CheckBox Content="Html\Raw" IsChecked="{Binding IsShowHtml}" Grid.Column="2" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Bottom" Grid.Row="1"/>
   </Grid>
 </Window>

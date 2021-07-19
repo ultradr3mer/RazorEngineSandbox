@@ -2,6 +2,7 @@
 {
   using System;
   using System.Collections.Concurrent;
+  using System.Collections.Generic;
   using System.Security;
   using System.Security.Policy;
   using System.Threading;
@@ -73,7 +74,9 @@
       {
         var scriptOptions = ScriptOptions.Default;
         scriptOptions = scriptOptions.AddReferences(typeof(TemplateService).Assembly);
-        scriptOptions = scriptOptions.AddImports("System", "RazorEngineSandbox.Data");
+        scriptOptions = scriptOptions.AddReferences(typeof(Dictionary<string,string>).Assembly);
+        scriptOptions = scriptOptions.AddImports("System", "RazorEngineSandbox.Data", "System.Collections.Generic");
+        //scriptOptions.all
         result.Model = await CSharpScript.EvaluateAsync(request.Code, scriptOptions);
       }
       catch (CompilationErrorException e)
