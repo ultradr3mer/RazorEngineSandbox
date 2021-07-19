@@ -1,16 +1,14 @@
 ﻿namespace RazorEngineSandbox.ViewModels
 {
-  using System.ComponentModel;
-
   using Microsoft.Practices.Unity;
-
   using Prism.Events;
   using Prism.Mvvm;
-
   using RazorEngineSandbox.Data;
   using RazorEngineSandbox.Events;
   using RazorEngineSandbox.Properties;
   using RazorEngineSandbox.Services;
+  using System.ComponentModel;
+  using System.Windows;
 
   internal class MainWindowViewModel : BindableBase
   {
@@ -24,6 +22,9 @@
     /// <summary>The <see cref="CodeDiagnostics" /> property's value.</summary>
     private string propCodeDiagnostics;
 
+    private Visibility propHtmlResultVisibility;
+    private bool propIsShowHtml;
+
     /// <summary>The <see cref="Result" /> property's value.</summary>
     private string propResult;
 
@@ -33,7 +34,9 @@
     /// <summary>The <see cref="TemplateDiagnostics" /> property's value.</summary>
     private string propTemplateDiagnostics;
 
-    #endregion
+    private Visibility propTextResultVisibility;
+
+    #endregion Fields
 
     #region Constructors
 
@@ -52,7 +55,7 @@
       this.Template = Resources.Template;
     }
 
-    #endregion
+    #endregion Constructors
 
     #region Properties
 
@@ -68,6 +71,18 @@
     {
       get { return this.propCodeDiagnostics; }
       set { this.SetProperty(ref this.propCodeDiagnostics, value); }
+    }
+
+    public Visibility HtmlResultVisibility
+    {
+      get { return propHtmlResultVisibility; }
+      set { SetProperty(ref propHtmlResultVisibility, value); }
+    }
+
+    public bool IsShowHtml
+    {
+      get { return propIsShowHtml; }
+      set { SetProperty(ref propIsShowHtml, value); }
     }
 
     /// <summary>Gets or sets the result.</summary>
@@ -91,7 +106,13 @@
       set { this.SetProperty(ref this.propTemplateDiagnostics, value); }
     }
 
-    #endregion
+    public Visibility TextResultVisibility
+    {
+      get { return propTextResultVisibility; }
+      set { SetProperty(ref propTextResultVisibility, value); }
+    }
+
+    #endregion Properties
 
     #region Methods
 
@@ -113,8 +134,14 @@
       {
         this.templateService.Parse(this.Code, this.Template);
       }
+
+      if (e.PropertyName == nameof(MainWindowViewModel.IsShowHtml))
+      {
+        this.HtmlResultVisibility = this.IsShowHtml ? Visibility.Visible : Visibility.Collapsed;
+        this.TextResultVisibility = this.IsShowHtml ? Visibility.Collapsed : Visibility.Visible;
+      }
     }
 
-    #endregion
+    #endregion Methods
   }
 }
