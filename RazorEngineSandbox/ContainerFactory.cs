@@ -1,8 +1,8 @@
 ﻿namespace RazorEngineSandbox
 {
-  using Microsoft.Practices.Unity;
-
   using Prism.Events;
+  using Unity;
+  using Unity.Lifetime;
 
   /// <summary>Factory for creating the base unity container for this application.</summary>
   internal static class ContainerFactory
@@ -13,7 +13,7 @@
     /// <returns>The <see cref="IUnityContainer" />.</returns>
     public static IUnityContainer Create()
     {
-      LifetimeManager Lm()
+      ITypeLifetimeManager Lm()
       {
         return new ContainerControlledLifetimeManager();
       }

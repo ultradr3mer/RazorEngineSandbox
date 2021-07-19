@@ -11,7 +11,6 @@
 
   using Microsoft.CodeAnalysis.CSharp.Scripting;
   using Microsoft.CodeAnalysis.Scripting;
-  using Microsoft.Practices.Unity;
 
   using Prism.Events;
 
@@ -19,6 +18,7 @@
 
   using RazorEngineSandbox.Data;
   using RazorEngineSandbox.Events;
+  using Unity;
 
   /// <summary>The Template Service for parsing razor templates.</summary>
   internal class TemplateService

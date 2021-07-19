@@ -1,6 +1,5 @@
 ﻿namespace RazorEngineSandbox.ViewModels
 {
-  using Microsoft.Practices.Unity;
   using Prism.Events;
   using Prism.Mvvm;
   using RazorEngineSandbox.Data;
@@ -9,6 +8,7 @@
   using RazorEngineSandbox.Services;
   using System.ComponentModel;
   using System.Windows;
+  using Unity;
 
   internal class MainWindowViewModel : BindableBase
   {
@@ -25,7 +25,7 @@
     {
       this.PropertyChanged += this.MainWindowViewModelPropertyChanged;
 
-      var container = ContainerFactory.Create();
+      IUnityContainer container = ContainerFactory.Create();
       this.templateService = container.Resolve<TemplateService>();
 
       var eventAggregator = container.Resolve<IEventAggregator>();
@@ -42,14 +42,13 @@
     /// <summary>Gets or sets the code diagnostics info.</summary>
     public string CodeDiagnostics { get; set; }
 
+    public Visibility HtmlResultVisibility { get; set; }
+
     /// <summary>Gets or sets the input.</summary>
     public string Input { get; set; }
 
-    public string Output { get; set; }
-
-    public Visibility HtmlResultVisibility { get; set; }
-
     public bool IsShowHtml { get; set; } = true;
+    public string Output { get; set; }
 
     /// <summary>Gets or sets the result.</summary>
     public string Result { get; set; }
