@@ -7,28 +7,28 @@
         xmlns:viewModels="clr-namespace:RazorEngineSandbox.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <ResourceDictionary>
-            <viewModels:MainWindowViewModel x:Key="ViewModel" />
-        </ResourceDictionary>
-    </Window.Resources>
-    <Window.DataContext>
-        <StaticResourceExtension ResourceKey="ViewModel" />
-    </Window.DataContext>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="150" />
-        </Grid.RowDefinitions>
-        <TextBox Margin="5" Text="{Binding Path=Code,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" />
-        <TextBox Grid.Column="1" Margin="5" Text="{Binding Path=Template,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" />
-        <WebBrowser Grid.Column="2" Margin="5" Grid.RowSpan="2" Name="WebBrowser"/>
-        <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding CodeDiagnostics}" TextWrapping="Wrap"/>
-        <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding TemplateDiagnostics}" TextWrapping="Wrap"/>
-    </Grid>
+  <Window.Resources>
+    <ResourceDictionary>
+      <viewModels:MainWindowViewModel x:Key="ViewModel" />
+    </ResourceDictionary>
+  </Window.Resources>
+  <Window.DataContext>
+    <StaticResourceExtension ResourceKey="ViewModel" />
+  </Window.DataContext>
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="150" />
+    </Grid.RowDefinitions>
+    <TextBox Margin="5" Text="{Binding Path=Input,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" />
+    <TextBox Grid.Column="1" Margin="5" Text="{Binding Path=Template,UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" AcceptsTab="True" />
+    <WebBrowser Grid.Column="2" Margin="5" Grid.RowSpan="2" Name="WebBrowser"/>
+    <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Text="{Binding CodeDiagnostics}" TextWrapping="Wrap"/>
+    <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding TemplateDiagnostics}" TextWrapping="Wrap"/>
+  </Grid>
 </Window>
